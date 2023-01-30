@@ -3,6 +3,10 @@ server:
 spring:
   application:
     name: r2rAdaptor
+  mvc:
+    pathmatch:
+      # 解决mapping.getPatternsCondition()返回null
+      matching-strategy: ant_path_matcher
 springdoc:
   api-docs:
     enabled: false
