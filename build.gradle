@@ -9,6 +9,7 @@ group 'org.r2r.app'
 version '0.0.1-SNAPSHOT'
 
 repositories {
+    mavenLocal()
     maven {  url 'https://maven.aliyun.com/nexus/content/groups/public/'  }
     mavenCentral()
 }
@@ -16,6 +17,8 @@ repositories {
 ext {
     springCloudVersion = '2022.0.0'
     lombokVersion = '1.18.24'
+    guava = "31.1-jre"
+    commonsLang3 = "3.12.0"
 }
 
 subprojects {
@@ -31,6 +34,7 @@ subprojects {
     jar.enabled = true
 
     repositories {
+        mavenLocal()
         maven {  url 'https://maven.aliyun.com/nexus/content/groups/public/'  }
         mavenCentral()
     }
@@ -41,6 +45,8 @@ subprojects {
         }
         dependencies {
             dependency "lombok:org.projectlombok:${lombokVersion}"
+            dependency "com.google.guava:guava:${guava}"
+            dependency "org.apache.commons:commons-lang3:${commonsLang3}"
         }
     }
 

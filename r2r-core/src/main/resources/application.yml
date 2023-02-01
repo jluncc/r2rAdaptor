@@ -25,3 +25,7 @@ logging:
       max-file-size: 10MB
       total-size-cap: 1GB
       max-history: 0
+
+r2r-adaptor:
+  api-log:
+    headers: test1,test2

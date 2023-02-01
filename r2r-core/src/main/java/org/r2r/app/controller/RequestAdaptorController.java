@@ -1,7 +1,7 @@
 package org.r2r.app.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.r2r.app.aspect.APIVersion;
+import org.r2r.app.annotation.apiversion.ApiVersion;
 import org.r2r.app.model.APIParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RequestAdaptorController {
 
-    @APIVersion("v1")
+    //@IgnoreApiLog
+    @ApiVersion("v1")
     @PostMapping("/adaptor/request")
     public Object sendRequest(@RequestBody APIParam apiParam) {
-        log.info("key:{}, sync:{}", apiParam.getKey(), apiParam.isSync());
         return "test";
     }
 

@@ -1,4 +1,4 @@
-package org.r2r.app.aspect;
+package org.r2r.app.annotation.apiversion;
 
 import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.core.annotation.AnnotationUtils;
@@ -10,7 +10,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 import java.lang.reflect.Method;
 import java.util.Objects;
 
-public class APIVersionHandlerMapping extends RequestMappingHandlerMapping {
+public class ApiVersionHandlerMapping extends RequestMappingHandlerMapping {
     @Override
     protected boolean isHandler(Class<?> beanType) {
         return AnnotatedElementUtils.hasAnnotation(beanType, Controller.class);
@@ -19,9 +19,9 @@ public class APIVersionHandlerMapping extends RequestMappingHandlerMapping {
     @Override
     protected void registerHandlerMethod(Object handler, Method method, RequestMappingInfo mapping) {
         Class<?> controllerClass = method.getDeclaringClass();
-        APIVersion apiVersion = AnnotationUtils.findAnnotation(controllerClass, APIVersion.class);
-        APIVersion methodVersion = AnnotationUtils.findAnnotation(method, APIVersion.class);
-        // 类上版本与方法上版本只有一个生效, 以方法上的优先
+        ApiVersion apiVersion = AnnotationUtils.findAnnotation(controllerClass, ApiVersion.class);
+        ApiVersion methodVersion = AnnotationUtils.findAnnotation(method, ApiVersion.class);
+        // 类上版本与方法上版本只有一个生效, 且以方法上的优先
         if (Objects.nonNull(methodVersion)) {
             apiVersion = methodVersion;
         }
