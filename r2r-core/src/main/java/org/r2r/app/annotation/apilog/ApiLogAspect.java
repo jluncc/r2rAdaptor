@@ -94,6 +94,9 @@ public class ApiLogAspect {
     }
 
     private String delLastComma(StringBuilder stringBuilder) {
+        if (stringBuilder.length() < 1) {
+            return stringBuilder.toString();
+        }
         if (stringBuilder.lastIndexOf(",") == stringBuilder.length() - 1) {
             return stringBuilder.substring(0, stringBuilder.length() - 1);
         }
@@ -149,9 +152,9 @@ public class ApiLogAspect {
     @AfterThrowing(pointcut = "apiLog()", throwing = "ex")
     public void afterThrowing(JoinPoint joinPoint, Throwable ex) {
         String errorLog = "exception occurred --- " + getBodyStr(joinPoint) +
-                String.format(" --- uri:%s;", RequestUtils.getRequestURI()) +
-                String.format("type:%s;", ex.getClass().getSimpleName()) +
-                String.format("msg:%s;", ex.getMessage());
+                String.format(" --- uri:%s|", RequestUtils.getRequestURI()) +
+                String.format("type:%s|", ex.getClass().getSimpleName()) +
+                String.format("msg:%s", ex.getMessage());
         log.warn(errorLog);
     }
 

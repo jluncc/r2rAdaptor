@@ -10,7 +10,7 @@ import java.util.Map;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class APIParam {
+public class ApiParam {
     @NonNull
     private String key;
 
